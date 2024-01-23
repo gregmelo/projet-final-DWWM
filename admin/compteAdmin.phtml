@@ -1,0 +1,33 @@
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="card w-50">
+                    <div class="card-body">
+                        <h1 class="text-center">Mon Compte</h1>
+                        <?php if (isset($erreur)) : ?>
+                            <p class="alert alert-danger"><?php echo $erreur; ?></p>
+                        <?php endif; ?>
+                        <?php if (isset($message)) : ?>
+                            <p class="alert alert-success" id="message"><?php echo $message; ?></p>
+                        <?php endif; ?>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="email">Email :</label>
+                                <input type="email" class="form-control" id="email" name="admin_email" value="<?php echo $_SESSION['admin_email'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="motdepasse">Mot de passe :</label>
+                                <input type="password" class="form-control" id="motdepasse" name="admin_pass">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Mettre à jour</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

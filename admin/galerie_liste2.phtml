@@ -1,0 +1,108 @@
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+
+                        <h1>Galerie</h1>
+                        <form method="get">
+                            <div class="form-group row">
+                                <label for="classe" class="col-sm-2 col-form-label">Sélectionnez la classe :</label>
+                                <div class="col-sm-10">
+                                    <select name="classe" class="form-control">
+                                        <option value="">Toutes les classes</option>
+                                        <?php foreach ($listeClasse as $classeItem) { ?>
+                                            <option value="<?php echo $classeItem['nom'] ?>" <?php if ($classe == $classeItem['nom']) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>><?php echo $classeItem['nom'] ?>, niveau <?php echo $classeItem['niveau'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Afficher</button>
+                        </form>
+
+                        <?php if (!empty($message)) { ?>
+                            <p><?php echo $message; ?></p>
+                        <?php } ?>
+                        <?php if (!empty($photos)) { ?>
+                            <div class="row mt-4">
+                                <?php foreach ($photos as $photo) { ?>
+                                    <div class="col-md-4">
+                                        <a href="#" data-toggle="modal" data-target="#photo-modal" data-src="<?php echo $photo['url']; ?>" class="photo-link">
+                                            <img src="<?php echo $photo['url']; ?>" alt="<?php echo $photo['alt']; ?>" class="img-fluid">
+                                        </a>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+
+                        <!-- Photo Modal -->
+                        <div class="modal fade" id="photo-modal" tabindex="-1" role="dialog" aria-labelledby="photo-modal-label" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="photo-modal-label">Photo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <img src="" class="modal-photo img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Photo Modal -->
+
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+        </div> <!-- end container-fluid -->
+    </div> <!-- end content -->
+
+</div> <!-- end content-page -->
+
+
+<!-- JS code -->
+
+<script src="assets/js/vendor.min.js"></script>
+
+<!-- datatable js -->
+<script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+<!-- Photo Modal Script -->
+<script>
+    $(document).on("click", ".photo-link", function() {
+        var src = $(this).data('src');
+        $(".modal-photo").attr("src", src);
+    });
+</script>
+<!-- End Photo Modal Script -->
+
+
+<!-- datatable init -->
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            "language": {
+                "url": "assets/libs/datatables/french.json"
+            },
+            "order": [
+                [0, "desc"]
+            ],
+            "responsive": true
+        });
+    });
+</script>
+<!-- end datatable init -->
+
+<!-- app js -->
+<script src="assets/js/app.min.js"></script>
+
+<!-- end JS code -->

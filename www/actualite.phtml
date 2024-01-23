@@ -1,0 +1,191 @@
+<?php include $template2 . '.phtml' ?>
+
+<style>
+    /* Style pour centrer les tableaux et ajouter un petit espace entre eux */
+    .table-container {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        /* Espacement entre les deux tableaux */
+    }
+
+    /* Style pour les bordures des cellules et le centrage du contenu */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        /* Bordure des cellules */
+        padding: 8px;
+        text-align: center;
+    }
+</style>
+
+<h1>Actualités</h1>
+
+<div class="table-container">
+    <?php if (isset($selected_child_info)) { ?>
+        <div>
+            <h2>Activités</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Jours</th>
+                        <th>Durée</th>
+                        <!-- Autres colonnes spécifiques aux activités -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($activites as $activite) : ?>
+                        <tr>
+                            <td><?php echo $activite['titreActivitees']; ?></td>
+                            <td><?php echo $activite['description']; ?></td>
+                            <td><?php echo $activite['jours']; ?></td>
+                            <td><?php echo $activite['duree']; ?></td>
+                            <!-- Remplir les autres colonnes ici -->
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h2>Informations sur les classes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Details</th>
+                        <!-- Autres colonnes spécifiques aux informations -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($informations as $information) : ?>
+                        <tr>
+                            <td><?php echo $information['titreInfos']; ?></td>
+                            <td><?php echo $information['details']; ?></td>
+                            <!-- Remplir les autres colonnes ici -->
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php } else { ?>
+        <p>Sélectionnez un enfant pour afficher les activités et les informations.</p>
+    <?php } ?>
+</div>
+
+<script>
+    // Function to submit the form with the selected child's ID
+    function submitFormOnChange() {
+        var selectedChildId = document.getElementById('select_enfant').value;
+        document.getElementById('select_enfant_form').submit();
+    }
+
+    // Function to handle the initial form submission on page load
+    function initialFormSubmission() {
+        var selectedChildId = document.getElementById('select_enfant').value;
+        if (!selectedChildId) { // Soumettre uniquement si aucun enfant n'est sélectionné
+            var firstChildId = document.querySelector('#select_enfant option:first-child').value;
+            document.getElementById('select_enfant').value = firstChildId;
+            // Manually trigger the 'change' event after setting the value
+            var changeEvent = new Event('change', {
+                bubbles: true
+            });
+            document.getElementById('select_enfant').dispatchEvent(changeEvent);
+
+            // Submit the form to load the default child's information
+            document.getElementById('select_enfant_form').submit();
+        }
+    }
+
+    // Function to fetch the child's information and display it in the tables
+    function displayChildInformation(childId) {
+        // Use AJAX to fetch the child's information
+        // Replace 'fetch_url' with the actual URL to fetch the child's information
+        var fetch_url = '../models/eleveDAO.php?id=' + childId;
+        fetch(fetch_url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.activites) {
+                    // Display activities information
+                    var activitiesTable = document.getElementById('table-activites');
+                    activitiesTable.innerHTML = ''; // Clear previous data
+                    data.activites.forEach(activity => {
+                        var row = activitiesTable.insertRow();
+                        row.insertCell().textContent = activity.titreActivitees;
+                        row.insertCell().textContent = activity.description;
+                        row.insertCell().textContent = activity.jours;
+                        row.insertCell().textContent = activity.duree;
+                        // Add other columns here if needed
+                    });
+                }
+
+                if (data.informations) {
+                    // Display information information
+                    var informationsTable = document.getElementById('table-informations');
+                    informationsTable.innerHTML = ''; // Clear previous data
+                    data.informations.forEach(information => {
+                        var row = informationsTable.insertRow();
+                        row.insertCell().textContent = information.titreInfos;
+                        row.insertCell().textContent = information.details;
+                        // Add other columns here if needed
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching child information:', error));
+    }
+
+    // Add an event listener to call the initialFormSubmission function on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        initialFormSubmission();
+        var selectedChildId = document.getElementById('select_enfant').value;
+        if (selectedChildId) {
+            displayChildInformation(selectedChildId);
+        }
+    });
+
+    // Écouteur d'événement pour détecter le changement de sélection dans la liste déroulante
+    document.getElementById('select_enfant').addEventListener('change', function () {
+        submitFormOnChange();
+    });
+</script>
+
+<!-- <script>
+    // Function to submit the form with the selected child's ID
+    function submitFormOnChange() {
+        var selectedChildId = document.getElementById('select_enfant').value;
+        document.getElementById('select_enfant_form').submit();
+    }
+
+    // Function to handle the initial form submission on page load
+    function initialFormSubmission() {
+        var selectedChildId = document.getElementById('select_enfant').value;
+        if (!selectedChildId) { // Soumettre uniquement si aucun enfant n'est sélectionné
+            var firstChildId = document.querySelector('#select_enfant option:first-child').value;
+            document.getElementById('select_enfant').value = firstChildId;
+            // Manually trigger the 'change' event after setting the value
+            var changeEvent = new Event('change', {
+                bubbles: true
+            });
+            document.getElementById('select_enfant').dispatchEvent(changeEvent);
+
+            // Submit the form to load the default child's information
+            document.getElementById('select_enfant_form').submit();
+        }
+    }
+
+    // Add an event listener to call the initialFormSubmission function on page load
+    document.addEventListener('DOMContentLoaded', initialFormSubmission);
+
+    // Écouteur d'événement pour détecter le changement de sélection dans la liste déroulante
+    document.getElementById('select_enfant').addEventListener('change', function () {
+        submitFormOnChange();
+    });
+</script> -->
+

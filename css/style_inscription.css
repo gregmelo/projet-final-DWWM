@@ -1,0 +1,70 @@
+.containerinscription {
+    margin: 0;
+    padding: 0 1em;
+}
+.formTitre{
+
+    font-family: RubikVinyl;
+    color: var(--blue)
+}
+.formTitreEnfant{
+    font-family: IndieFlower;
+    color: var(--pink);
+    font-weight: bold;
+
+
+}
+.liensForm {
+  text-decoration: none;
+  	font-weight: bold;
+    font-family: IndieFlower;
+    color: var(--blue);
+}
+.liensForm:hover {
+  text-decoration: none;
+  	font-weight: bold;
+    font-family: IndieFlower;
+    color: var(--pink);
+}
+
+.form-login label,
+.form-ajout-enfant label {
+	font-weight: bold;
+    font-family: IndieFlower;
+    color: var(--blue);
+}
+
+.form-login input,
+.form-ajout-enfant input {
+	font-size: 95%;
+}
+.button {
+    margin-left: 20px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: var(--white);
+    font-family: IndieFlower;
+    background-color: var(--pink);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px var(--green);
+  width: 50%;
+  margin: 0 auto;
+  }
+  
+  .button:hover {background-color: var(--blue)}
+  
+  .button:active {
+    background-color: var(--blue);
+    box-shadow: 0 5px var(--yellow);
+    transform: translateY(4px);
+  }
+  em{
+    color: var(--pink);
+  }
+  

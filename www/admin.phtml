@@ -1,0 +1,29 @@
+        <div class="col-12 col-sm-6 gy-5 text-center">
+            <div class="formTitre">INSCRIPTION</div>
+            <?php if ($inscription_ok == 2) { ?>
+                <div class="alert alert-danger" role="alert">
+                    Cette adresse email éxiste déjà
+                </div>
+            <?php } ?>
+            <form class="form-login" method="POST">
+                <input name="idParent" type="hidden" value="<?php $idParent ?>">
+                <label>Nom <em>*</em></label><br>
+                <input name="nom" required type="text" class="input-text"><br><br>
+
+                <label>Prénom <em>*</em></label><br>
+                <input name="prenom" required type="text" class="input-text"><br><br>
+
+                <label>Email <em>*</em></label><br>
+                <input name="email" required type="text" class="input-text"><br><br>
+
+                <label>Mot de passe <em>*</em></label><br>
+                <input name="insPassword"  id="insPassword"required type="password" class="input-text"><br><br>
+                <input type="checkbox" id="insShowPassword">
+                <label for="insShowPassword" id="insLabelShowPassword">Afficher le mot de passe</label><br><br>
+                <div class="buttons-set">
+                    <button name="inscription" class="button" type="submit"><span>inscription</span></button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

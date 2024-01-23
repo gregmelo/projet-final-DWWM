@@ -1,0 +1,10 @@
+#horaire {
+  font-weight: bold;
+  font-family: IndieFlower;
+  color: var(--blue);
+}
+
+img.ecole {
+  display: block;
+  margin: 0 auto;
+}

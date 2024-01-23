@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h1 class="text-center mb-4">Contactez-nous</h1>
+            <?php if (isset($error)) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $error ?>
+                </div>
+            <?php } ?>
+            <?php if (isset($success)) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $success ?>
+                </div>
+            <?php } ?>
+            <form method="POST">
+                <div class="form-login mb-3">
+                    <label for="nom">Nom complet</label>
+                    <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $parent_nom . ' ' . $parent_prenom ?>" required>
+
+                </div>
+                <div class=" form-login mb-3">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $parent_email ?>" required>
+                </div>
+                <?php include $template2 . '.phtml' ?>
+                <div class="form-login mb-3">
+                    <label for="id_enseignant">Choisir l'enseignant</label>
+                    <select class="form-control" id="id_enseignant" name="id_enseignant" required>
+                        <?php foreach ($listeEnseignants as $enseignant) { ?>
+                            <option value="<?php echo $enseignant['id'] ?>"><?php echo $enseignant['nom'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-login mb-3">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                </div>
+                <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
+
+
+                <div class="d-grid">
+                    <button name="envoyer" type="submit" class="button">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lf8rNEkAAAAALP4n3preZvY_NfCwCPVUwCY6G3y"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lf8rNEkAAAAALP4n3preZvY_NfCwCPVUwCY6G3y', {
+            action: 'homepage'
+        }).then(function(token) {
+            document.getElementById('recaptchaResponse').value = token
+        });
+    });
+</script>
+<script>
+    // Fonction pour mettre à jour le nom de l'enseignant
+    function updateTeacherName(childId) {
+        $.ajax({
+            type: "POST",
+            url: "../models/enseignantDAO.php", // Remplacez par le chemin du fichier PHP qui obtient le nom de l'enseignant
+            data: { childId: childId },
+            success: function (response) {
+                $("#enseignant_nom").text(response); // Utilisez "enseignant_nom" comme ID pour l'élément d'affichage du nom de l'enseignant
+            }
+        });
+    }
+
+    // Écouteur d'événement pour détecter le changement de sélection dans la liste déroulante
+    $("#id_enseignant").on("change", function () {
+        var selectedChildId = $(this).val();
+        updateTeacherName(selectedChildId);
+    });
+
+    // Au chargement initial de la page, mettez à jour le nom de l'enseignant pour l'enfant sélectionné
+    var selectedChildId = $("#id_enseignant").val();
+    updateTeacherName(selectedChildId);
+</script>
+
+

@@ -1,0 +1,55 @@
+<div class="container">
+    <section class="row">
+        <!--changement de mot de passe-->
+        <div class="col-12 gy-5 text-center">
+            <h2 class="formTitre mb-4">Veuillez saisir votre email et choisir un nouveau mot de passe</h2>
+            <?php if (isset($message)) : ?>
+                <div id="redirect-message" class="alert alert-success" role="alert"><?php echo $message; ?></div>
+            <?php endif; ?>
+            <?php if (isset($error)) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $error; ?>
+                </div>
+            <?php endif; ?>
+
+            <form class="form-login" method="POST" id="passwordOublier" onsubmit="return validateForm()">
+                <div class="form-login mb-3">
+                    <label>Email <em>*</em></label>
+                    <input type="text" id="email" name="email" required class="form-control">
+                    <span id="email-error" class="error-message"></span>
+                </div>
+                <div class="form-login mb-3">
+                    <label>Nouveau mot de passe <em>*</em></label>
+                    <input type="password" id="nPassword" name="nPassword" required class="form-control">
+                    <span id="nPassword-error" class="error-message"></span>
+                </div>
+                <div class="form-login mb-3">
+                    <label>Resaisissez votre mot de passe <em>*</em></label>
+                    <input type="password" id="cPassword" name="cPassword" required class="form-control">
+                    <span id="cPassword-error" class="error-message"></span>
+                </div>
+                <div class="form-login mb-3">
+                    <input type="checkbox" id="showPassword">
+                    <label for="showPassword" id="labelShowPassword">Afficher les mots de passe</label>
+                </div>
+                <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
+                <div class="d-grid">
+                    <button name="passwordOublier" class="button" type="submit"><span>Réinitialiser votre mot de passe</span></button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!--Fin container -->
+
+<script src="https://www.google.com/recaptcha/api.js?render=6Lf8rNEkAAAAALP4n3preZvY_NfCwCPVUwCY6G3y"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lf8rNEkAAAAALP4n3preZvY_NfCwCPVUwCY6G3y', {
+            action: 'homepage'
+        }).then(function(token) {
+            document.getElementById('recaptchaResponse').value = token
+        });
+    });
+</script>

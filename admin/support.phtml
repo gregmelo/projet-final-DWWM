@@ -1,0 +1,39 @@
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+            <div class="container h-100 d-flex align-items-center">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="text-center">Formulaire de contact du support </h1>
+                        <?php if (isset($success) && $success) : ?>
+                            <div class="alert alert-success">Votre message a été envoyé avec succès.</div>
+                        <?php elseif (isset($error) && $error) : ?>
+                            <div class="alert alert-danger"><?= $error ?></div>
+                        <?php endif; ?>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="name">Nom<span class="text-danger">*</span> :</label>
+                                <input type="text" class="form-control" id="name" name="name" value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES) : '' ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email<span class="text-danger">*</span> :</label>
+                                <input type="email" class="form-control" id="email" name="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : '' ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Objet<span class="text-danger">*</span> :</label>
+                                <input type="text" class="form-control" id="subject" name="subject" value="<?= isset($_POST['subject']) ? htmlspecialchars($_POST['subject'], ENT_QUOTES) : '' ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message<span class="text-danger">*</span> :</label>
+                                <textarea class="form-control" id="message" name="message" required><?= isset($_POST['message']) ? htmlspecialchars($_POST['message'], ENT_QUOTES) : '' ?></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+    <?php if (empty($eleve_liste_by_parent)) { ?>
+        <p>Nous n'avons pas pu trouver votre ou vos enfants. Merci de contacter un enseignant ou le directeur.</p>
+    <?php } else { ?>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <form id="select_enfant_form" method="post" class="form-login mb-3">
+                    <div class="form-group row align-items-center">
+                        <label for="select_enfant" class="col-md-6 col-form-label text-md-right">Sélectionner un enfant :</label>
+                        <div class="col-md-6">
+                            <select id="select_enfant" name="select_enfant" class="form-control">
+                                <?php
+                                $selected_child_id = isset($selected_child_info['id']) ? $selected_child_info['id'] : null;
+                                foreach ($eleve_liste_by_parent as $eleve) {
+                                    $selected = ($eleve['id'] == $selected_child_id) ? 'selected' : '';
+                                ?>
+                                    <option value="<?php echo $eleve['id']; ?>" <?php echo $selected; ?>>
+                                        <?php echo $eleve['nom'] . ' ' . $eleve['prenom']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
+
+
+<!-- <script>
+  // Function to submit the form with the selected child's ID
+  function submitFormOnChange() {
+    var selectedChildId = document.getElementById('select_enfant').value;
+    document.getElementById('select_enfant_form').submit();
+  }
+
+  // Function to handle the initial form submission on page load
+  function initialFormSubmission() {
+    var selectedChildId = document.getElementById('select_enfant').value;
+    if (!selectedChildId) { // Soumettre uniquement si aucun enfant n'est sélectionné
+      var firstChildId = document.querySelector('#select_enfant option:first-child').value;
+      document.getElementById('select_enfant').value = firstChildId;
+      submitFormOnChange();
+    }
+  }
+
+  // Add an event listener to call the initialFormSubmission function on page load
+  document.addEventListener('DOMContentLoaded', initialFormSubmission);
+
+  // Écouteur d'événement personnalisé pour détecter le chargement initial de la page et soumettre le formulaire
+  document.addEventListener('initialPageLoad', submitFormOnChange);
+
+  // Déclencher l'événement initialPageLoad lors du chargement initial de la page
+  var initialPageLoadEvent = new Event('initialPageLoad');
+  document.dispatchEvent(initialPageLoadEvent);
+</script> -->
+
+
+

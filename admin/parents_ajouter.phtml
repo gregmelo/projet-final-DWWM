@@ -1,0 +1,125 @@
+   <div class="content-page">
+       <div class="content">
+
+           <!-- Start Content-->
+           <div class="container-fluid">
+
+               <!-- start page title -->
+               <div class="row">
+                   <div class="col-12">
+                       <div class="page-title-box">
+
+                           <h4 class="page-title">Ajouter un parent (ou un représentant légal)</h4>
+                       </div>
+                   </div>
+               </div>
+               <!-- end page title -->
+
+               <div class="row">
+                   <div class="col-12">
+                       <div class="card-box">
+                           <?php if ($ajout_ok == 1) { ?>
+                               <div class="alert alert-success" role="alert">
+                                <?php echo 'M. ou Mme <span class="font-weight-bold">' . $_POST['nom'] . ' ' . $_POST['prenom'] . '</span> a bien été ajouté(e) avec l\'adresse email <span class="font-weight-bold">' . $_POST['email'] . '</span> et le mot de passe <span class="font-weight-bold">' . $_POST['password'] . '</span><br> Veuillez noter ces informations et les transmettre au parent concerné afin qu\'il puisse modifier son mot de passe provisoire.'; ?>
+
+
+                               </div>
+                           <?php } else if ($ajout_ok == 2) { ?>
+                               <div class="alert alert-danger" role="alert">
+                                   <?php echo 'Mr ou Mme ' . $_POST['nom'] . ' ' . $_POST['prenom'] . ' existe déjà avec l\'email ' . $_POST['email']; ?>
+                               </div>
+                           <?php } else if ($ajout_ok == 3) { ?>
+                               <div class="alert alert-danger" role="alert">
+                                   <?php echo 'Le mot de passe doit contenir au moins 8 caractères avec au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial (@$!%*#?&)' ?>
+                               </div>
+                           <?php }else if ($ajout_ok == 4) { ?>
+                               <div class="alert alert-danger" role="alert">
+                                   <?php echo "L'email n'a pas le bon format" ?>
+                               </div>
+                           <?php } ?>
+                           <form class="form-horizontal" method="POST">
+                               <div class="form-group row">
+                                   <label class="col-sm-2 col-form-label" for="nom">Nom<span class="text-danger">*</span></label>
+                                   <div class="col-sm-10">
+                                       <input type="text" class="form-control" id="nom" name="nom" required>
+                                   </div>
+                               </div>
+                               <div class="form-group row">
+                                   <label class="col-sm-2 col-form-label" for="prenom">Prénom<span class="text-danger">*</span></label>
+                                   <div class="col-sm-10">
+                                       <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                   </div>
+                               </div>
+                               <div class="form-group row">
+                                   <label class="col-sm-2 col-form-label" for="email">Email<span class="text-danger">*</span></label>
+                                   <div class="col-sm-10">
+                                       <input type="text" class="form-control" id="email" name="email" required>
+                                   </div>
+                               </div>
+                               <div class="form-group row">
+                                   <label class="col-sm-2 col-form-label" for="passwordParent">Mot de passe<span class="text-danger">*</span></label>
+                                   <div class="col-sm-10">
+                                       <input type="password" class="form-control" id="passwordParent" name="password" required>
+                                   </div>
+                                   <span class="col-sm-2"></span>
+                                   <div class=" col-sm-10">
+                                       <input type="checkbox" id="chkPasswordParent">
+                                       <label for="insShowPassword" id="lblPasswordParent">Afficher le mot de passe</label><br><br>
+                                   </div>
+                               </div>
+                               <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                           </form>
+                       </div>
+
+
+
+                   </div> <!-- end card-box -->
+               </div><!-- end col -->
+           </div>
+           <!-- end row -->
+
+
+
+
+       </div> <!-- container-fluid -->
+
+   </div> <!-- content -->
+
+   <!-- Footer Start -->
+   <footer class="footer">
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-md-12 text-center">
+                   2023 &copy; thème Greeva, créé par Coderthemes, modifié par Véricel Grégory. 
+               </div>
+           </div>
+       </div>
+   </footer>
+   <!-- end Footer -->
+
+   </div>
+   <!-- Vendor js -->
+   <script src="assets/js/vendor.min.js"></script>
+
+   <!-- KNOB JS -->
+   <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
+   <!-- Chart JS -->
+   <script src="assets/libs/chart-js/Chart.bundle.min.js"></script>
+
+   <!-- Jvector map -->
+   <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
+   <script src="assets/libs/jqvmap/jquery.vmap.usa.js"></script>
+
+   <!-- Datatable js -->
+   <script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
+   <script src="assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+   <script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
+   <script src="assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+   <!-- Dashboard Init JS -->
+   <script src="assets/js/pages/dashboard.init.js"></script>
+
+   <!-- App js -->
+   <script src="assets/js/app.min.js"></script>
+   <!-- function password-->
+   <script src="assets/js/passwordParent.js"></script>

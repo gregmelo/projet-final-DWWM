@@ -1,0 +1,37 @@
+<div class="formulaire">
+    <?php if ($ajoutenfant == 1) { ?>
+        <div class="" role="alert">
+            <?php echo 'Votre enfant' . '<h4> ' . $_POST['enfantNom'] . $_POST['enfantPrenom'] . '</h4> ' . ' a bien été ajouter, merci de vous connecter. ' ?>
+        </div>
+    <?php } ?>
+
+    <div class="formTitreEnfant">
+        <?php if ($inscription_ok == 1) { ?>
+                <?php echo $id_parent ?> Pour finaliser votre inscription merci d'ajouter votre ou vos enfant(s).
+            </div>
+        <?php } ?>
+    </div>
+    <form class="form-ajout-enfant" method="POST">
+                <label>Nom <em>*</em></label><br>
+                <input name="enfantNom" required type="text" class="input-text"><br><br>
+
+                <label>Prénom <em>*</em></label><br>
+                <input name="enfantPrenom" required type="text" class="input-text"><br><br>
+
+                <label for="classe-select">Sélectionner sa classe:</label><br>
+                <select name="enfantClasse">
+                    <?php foreach ($classes as $classe) { ?>
+                        <option value="<?php echo $classe['id'] ?>"><?php echo $classe['niveau'] ?></option>
+                    <?php } ?>
+                </select><br>
+
+        <div class="buttons-set">
+            <button name="ValiderEnfant" class="button" type="submit"><span>Valider</span></button>
+            <button name="AjoutEnfant" class="button" type="submit"><span>Ajouter un enfant</span></button>
+
+        </div>
+    </form>
+
+
+
+</div>

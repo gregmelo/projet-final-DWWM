@@ -1,0 +1,238 @@
+@font-face {
+  font-family: IndieFlower;
+  src: url("../fonts/IndieFlower-Regular.ttf");
+}
+@font-face {
+  font-family: RubikVinyl;
+  src: url("../fonts/RubikVinyl-Regular.ttf");
+}
+
+:root {
+  --white: #ffffff;
+  --yellow: #fafe19f6;
+  --blue: #006ea3;
+  --pink: #fe277e;
+  --green: #48ff1a;
+}
+
+.menu {
+  position: relative;
+  height: 60px;
+  background-color: var(--white);
+  font-size: 0;
+}
+
+.menu a {
+  padding-top: 15px;
+  line-height: 30px;
+  height: 100%;
+  font-family: IndieFlower;
+  font-size: 30px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.menu .animation {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  transition: all 0.5s ease 0s;
+  border-radius: 8px;
+}
+
+.menu a:nth-child(1) {
+  width: 33%;
+}
+
+.menu a:nth-child(2) {
+  width: 33%;
+}
+
+.menu a:nth-child(3) {
+  width: 33%;
+}
+
+.menu .start-home,
+.menu a:nth-child(1):hover ~ .animation {
+  width: 33%;
+  left: 0;
+  background-color: var(--pink);
+}
+
+.menu .start-about,
+.menu a:nth-child(2):hover ~ .animation {
+  width: 32%;
+  left: 33%;
+  background-color: var(--yellow);
+}
+
+.menu .start-blog,
+.menu a:nth-child(3):hover ~ .animation {
+  width: 34%;
+  left: 65%;
+  background-color: var(--green);
+}
+
+/* style menu connecter */
+.menuconnecter {
+  position: relative;
+  height: 60px;
+  background-color: var(--white);
+  font-size: 0;
+}
+
+.menuconnecter a {
+  padding-top: 15px;
+  line-height: 30px;
+  height: 100%;
+  font-family: IndieFlower;
+  font-size: 30px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.menuconnecter .animationconnecter {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  transition: all 0.5s ease 0s;
+  border-radius: 8px;
+}
+
+.menuconnecter a:nth-child(1) {
+  width: 16.5%;
+}
+
+.menuconnecter a:nth-child(2) {
+  width: 16.7%;
+}
+
+.menuconnecter a:nth-child(3) {
+  width: 16.7%;
+}
+
+.menuconnecter a:nth-child(4) {
+  width: 16.7%;
+}
+
+.menuconnecter a:nth-child(5) {
+  width: 16.7%;
+}
+
+.menuconnecter a:nth-child(6) {
+  width: 16.7%;
+}
+
+.menuconnecter .start-homeconnecter,
+.menuconnecter a:nth-child(1):hover ~ .animationconnecter {
+  width: 16.5%;
+  left: 0;
+  background-color: var(--pink);
+}
+
+.menuconnecter .start-about,
+.menuconnecter a:nth-child(2):hover ~ .animationconnecter {
+  width: 16.7%;
+  left: 16.5%;
+  background-color: var(--yellow);
+}
+
+.menuconnecter .start-blog,
+.menuconnecter a:nth-child(3):hover ~ .animationconnecter {
+  width: 16.7%;
+  left: 33.2%;
+  background-color: var(--green);
+}
+
+.menuconnecter .start-blog,
+.menuconnecter a:nth-child(4):hover ~ .animationconnecter {
+  width: 16.7%;
+  left: 49.9%;
+  background-color: var(--pink);
+}
+
+.menuconnecter .start-blog,
+.menuconnecter a:nth-child(5):hover ~ .animationconnecter {
+  width: 16.7%;
+  left: 66.6%;
+  background-color: var(--yellow);
+}
+
+.menuconnecter .start-blog,
+.menuconnecter a:nth-child(6):hover ~ .animationconnecter {
+  width: 16.7%;
+  left: 83.3%;
+  background-color: var(--green);
+}
+.menu-burger {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: none;
+}
+.menu-burger i {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.-mr-3 {
+  position: absolute;
+  right: -3px;
+}
+
+.inactive {
+  display: block !important;
+  transform: translateX(-100%);
+}
+.nav-menu-burger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 2vh;
+  transition: transform 0.3s ease-in-out;
+}
+.nav-menu-burger p {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  height: 7vh;
+  display: block;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+  .menu-burger {
+    display: block;
+    transform: translateX(0);
+  }
+  .inactive {
+    display: none !important;
+    transform: translateX(-100%);
+  }
+  .nav-menu-burger p {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 7vh;
+    display: block;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+}

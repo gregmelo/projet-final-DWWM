@@ -1,0 +1,35 @@
+[
+  {
+    "module": "Fichier en local"
+  },
+  {
+    "id": "1",
+    "module": "HTML",
+    "niveau": "1",
+    "duree": "1"
+  },
+  {
+    "id": "2",
+    "module": "CSS",
+    "niveau": "1",
+    "duree": "2"
+  },
+  {
+    "id": "3",
+    "module": "SQL",
+    "niveau": "1",
+    "duree": "2"
+  },
+  {
+    "id": "4",
+    "module": "Algo",
+    "niveau": "1",
+    "duree": "5"
+  },
+  {
+    "id": "5",
+    "module": "JavaScript",
+    "niveau": "2",
+    "duree": "5"
+  }
+]

@@ -1,0 +1,153 @@
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">Liste des activités</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+
+                        <table id="datatable" class="table table-bordered dt-responsive nowrap table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Durée</th>
+                                    <th>Classe</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                <?php foreach ($activites as $act) { ?>
+
+
+                                    <tr>
+                                        <td><?php echo $act['titreActivitees'] ?></td>
+                                        <td><?php echo $act['description'] ?></td>
+                                        <td><?php echo date("d/m/Y", strtotime($act['date'])) ?></td>
+                                        <td><?php echo $act['duree'] ?></td>
+                                        <td><?php echo $act['classeNom'] ?><br><?php echo $act['classeNiveau'] ?></td>
+                                        <td>
+                                            <a href="modifier_activitees.php?id=<?php echo $act['id'] ?>" class="btn btn-primary waves-effect waves-light"> <i class="mdi mdi-pencil"></i> <span>Modifier</span> </a>
+
+                                            <a href="supprimer_activitees.php?id=<?php echo $act['id'] ?>" onclick="return confirm('Etes vous sur de vouloir Supprimer cette activité?')" class="btn btn-pink waves-effect waves-light"> <i class="mdi mdi-trash-can"></i> <span>Supprimer</span> </a>
+                                        </td>
+                                    </tr>
+
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+
+
+        </div> <!-- container-fluid -->
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">Liste des informations</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+
+                        <table id="datatable" class="table table-bordered dt-responsive nowrap table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Description</th>
+                                    <th>Classe</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                <?php foreach ($informations as $info) { ?>
+
+
+                                    <tr>
+                                        <td><?php echo $info['titre'] ?></td>
+                                        <td><?php echo $info['description'] ?></td>
+                                        <td><?php echo $info['classe_nom'] ?><br><?php echo $info['classe_niveau'] ?></td>
+                                        <td>
+                                            <a href="modifier_infos.php?id=<?php echo $info['id'] ?>" class="btn btn-primary waves-effect waves-light"> <i class="mdi mdi-pencil"></i> <span>Modifier</span> </a>
+
+                                            <a href="supprimer_infos.php?id=<?php echo $info['id'] ?>" onclick="return confirm('Etes vous sur de vouloir Supprimer cette information?')" class="btn btn-pink waves-effect waves-light"> <i class="mdi mdi-trash-can"></i> <span>Supprimer</span> </a>
+                                        </td>
+                                    </tr>
+
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+
+
+        </div> <!-- container-fluid -->
+    </div> <!-- content -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    2023 &copy; thème Greeva, créé par Coderthemes, modifié par Véricel Grégory. 
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+
+</div>
+
+<script src="assets/js/vendor.min.js"></script>
+
+<!-- datatable js -->
+<script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+<script src="assets/libs/datatables/dataTables.buttons.min.js"></script>
+<script src="assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+<script src="assets/libs/datatables/buttons.html5.min.js"></script>
+<script src="assets/libs/datatables/buttons.flash.min.js"></script>
+<script src="assets/libs/datatables/buttons.print.min.js"></script>
+
+<script src="assets/libs/datatables/dataTables.keyTable.min.js"></script>
+<script src="assets/libs/datatables/dataTables.select.min.js"></script>
+
+<!-- Datatables init -->
+<script src="assets/js/pages/datatables.init.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.min.js"></script>

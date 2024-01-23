@@ -1,0 +1,162 @@
+<!-- lien en ligne : http://vericelgregory.alwaysdata.net/REACTPHP/AXIOS/AxiosGetParameterRequestInFormClientsDUneVille.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AxiosGetParameterRequestInFormClientsDUneVille</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../icones/favicon.png" />
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone@7.18.5/babel.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <h1>AxiosGetParameterRequestInFormClientsDUneVille</h1>
+    <p>Ouvrez la console (F12)</p>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class ListClients extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            clients: [], // initialise un tableau vide pour stocker les clients
+          };
+        }
+
+        // récupère les clients du code postal donné via une requête HTTP GET
+        fetchClients() {
+          axios
+            .get(
+              "http://vericelgregory.alwaysdata.net/REACTPHP/AXIOS/GetFewClientsFromMySQL.php?cp=" +
+                this.props.cp
+            )
+            // .get(
+            //   "http://localhost/cours_pascal_react/ReactCoursIntro/props/REACTPHP/AXIOS/GetFewClientsFromMySQL.php?cp=" +
+            //     this.props.cp
+            // )
+            .then((response) => {
+              this.setState({ clients: response.data }); // met à jour le state avec la réponse reçue
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+
+        // appelé automatiquement après le montage du composant, récupère les clients du code postal initial
+        componentDidMount() {
+          this.fetchClients();
+        }
+
+        // appelé automatiquement à chaque mise à jour du composant, vérifie si le code postal a changé et récupère les clients correspondants si c'est le cas
+        componentDidUpdate(prevProps) {
+          if (prevProps.cp !== this.props.cp) {
+            this.fetchClients();
+          }
+        }
+
+        // affiche la liste des clients pour le code postal donné ou un message si aucun client n'a été trouvé
+        render() {
+          if (this.state.clients.length === 0) {
+            return <p>Aucun client pour le code postal {this.props.cp}.</p>;
+          }
+
+          return (
+            <ul>
+              {this.state.clients.map((client) => (
+                <li key={client.nom + client.prenom}>
+                  {client.nom}, {client.prenom} ({client.cp})
+                </li>
+              ))}
+            </ul>
+          );
+        }
+      }
+
+      class Clients extends React.Component {
+        constructor(props) {
+          super(props);
+          // Initialisation de l'état du composant avec le code postal et l'affichage de la liste de clients
+          this.state = {
+            cp: this.props.cp,
+            showClients: false,
+          };
+          // On bind les méthodes "change" et "submit" à l'instance du composant
+          this.change = this.change.bind(this);
+          this.submit = this.submit.bind(this);
+        }
+
+        // Fonction appelée lorsque le champ "Code Postal" est modifié
+        change(event) {
+          let value = event.target.value;
+          // Quand le champ "Code Postal" est validé, on met à jour l'état avec la nouvelle valeur
+          // et on cache la liste de clients
+          if (event.target.name === "cp") {
+            this.setState({ cp: value, showClients: false });
+          }
+        }
+
+        // Fonction appelée lors de la soumission du formulaire
+        submit(event) {
+          event.preventDefault();
+          // On récupère la valeur du champ "Code Postal"
+          const cp = event.target.cp.value;
+          // Si la valeur est vide, on met à jour l'état avec un message demandant de saisir un code postal et on ne montre pas la liste des clients
+          if (!cp) {
+            alert("Veuillez saisir un code postal.");
+            return;
+          }
+          // Sinon, on met à jour l'état avec la valeur du champ "Code Postal" et on affiche la liste de clients
+          this.setState({ cp, showClients: true });
+        }
+
+        render() {
+          return (
+            <div>
+              {/* Formulaire pour saisir le code postal */}
+              <form onSubmit={this.submit}>
+                <label>Code Postal:</label>
+                <input
+                  type="text"
+                  name="cp"
+                  value={this.state.cp}
+                  onChange={this.change}
+                />
+                <button type="submit">Valider</button>
+              </form>
+              {/* Message affiché si le bouton "Valider" n'a pas encore été cliqué */}
+              {!this.state.showClients && (
+                <p>
+                  Veuillez cliquer sur le bouton "Valider" pour afficher les
+                  clients.
+                </p>
+              )}
+              {/* Affichage de la liste de clients si le bouton "Valider" a été cliqué */}
+              {this.state.showClients && <ListClients cp={this.state.cp} />}
+            </div>
+          );
+        }
+      }
+
+      // MAIN
+      // Rendu du composant Clients dans le DOM
+      ReactDOM.render(
+        <Clients message="The message ..." />,
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>

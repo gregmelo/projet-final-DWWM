@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FormAndSubmitInscription</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div>
+      <h3>FormAndSubmitInscription</h3>
+      <form
+        id="formulaire"
+        method="GET"
+        action="http://localhost/PourFrontJS/controls/UtilisateursCTRLInsertGET.php"
+      >
+        <label for="pseudo">Pseudo : </label><br /><input
+          type="text"
+          name="pseudo"
+          id="pseudo"
+          value="pb"
+        /><br /><label for="mdp">MDP : </label><br /><input
+          type="password"
+          name="mdp"
+          id="mdp"
+          value="b"
+        /><br /><label for="email">Email : </label><br /><input
+          type="email"
+          name="email"
+          id="email"
+          value="pb@gmail.com"
+        /><br /><input
+          type="submit"
+          value="Valider"
+          name="btValider"
+          id="btValider"
+        /><br /><label id="lblMessage">Message</label>
+      </form>
+    </div>
+            
+    <script src="FormAndSubmitInscription.js"></script>
+  </body>
+</html>

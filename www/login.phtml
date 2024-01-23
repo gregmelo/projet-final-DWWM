@@ -1,0 +1,51 @@
+<div class="container">
+    <section class="row">
+        <!--connexion-->
+        <div class="col-12 gy-5 text-center">
+            <h2 class="formTitre mb-4">CONNEXION</h2>
+            <?php if ($connexion_error == 1) { ?>
+                <div class="alert alert-danger" role="alert">
+                    Email ou mot de passe incorrect.
+                </div>
+            <?php } ?>
+
+            <!-- formulaire de connexion -->
+            <form class="form-login" method="POST" id="cFormulaire">
+                <div class="form-login mb-3">
+                    <label for="cEmail">Email <em>*</em></label>
+                    <input id="cEmail" name="cEmail" required type="text" class="form-control">
+                </div>
+                <div class="form-login mb-3">
+                    <label for="cPassword">Mot de passe <em>*</em></label>
+                    <input type="password" id="cPassword" name="cPassword" required class="form-control">
+                </div>
+                <div class="form-check mb-3 form-check-inline">
+                    <input type="checkbox" id="showPassword" class="form-check-input">
+                    <label for="showPassword" id="labelShowPasswordLogIn" class="form-check-label">Afficher le mot de passe</label>
+                </div>
+                <div class="form-login mb-3 ">
+                    <span class="form-check-label"><a href="index.php?action=mdpOublier" class="btn liensForm">Mot de passe oublié</a></span>
+                </div>
+                <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
+                <div class="d-grid">
+                    <button name="connexion" class="button" type="submit"><span>Connexion</span></button>
+                </div>
+            </form>
+        </div>
+
+        <!--Fin container -->
+
+        <!-- inclusion de Google reCAPTCHA pour éviter les attaques par robot -->
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lf8rNEkAAAAALP4n3preZvY_NfCwCPVUwCY6G3y"></script>
+        <script>
+            // appel de la fonction ready de reCAPTCHA
+            grecaptcha.ready(function() {
+                // exécution de la fonction execute de reCAPTCHA pour récupérer le jeton de réponse
+                grecaptcha.execute('6Lf8rNEkAAAAALP4n3preZvY_NfCwCPVUwCY6G3y', {
+                    action: 'homepage'
+                }).then(function(token) {
+                    // assignation du jeton de réponse au champ caché dans le formulaire
+                    document.getElementById('recaptchaResponse').value = token
+                });
+            });
+        </script>

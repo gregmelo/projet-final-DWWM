@@ -1,0 +1,28 @@
+#sidebar-menu li a:hover {
+  background-color: grey;
+}
+.breadcrumb-item + .breadcrumb-item:before {
+  display: none;
+}
+#datetime-input label {
+    width: auto;
+}
+
+#datetime-input .col-sm-4 {
+    flex: 1;
+}
+
+.fc th {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px;
+  vertical-align: middle;
+}
+.fc th.fc-day-header {
+  height: 30px;
+}
+.fc-day-number {
+  display: block;
+  margin-top: 5px;
+}

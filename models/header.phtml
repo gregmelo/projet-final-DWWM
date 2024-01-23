@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecole Jules Ferry d'Ambérieu_en_Bugey</title>
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="img/favicon/icons8-school-smashingstocks-flat-96.png">
+    <!--lien pour les styles-->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <?php if(isset($_SESSION['login_nom'])){ ?>
+        <nav class="menu">
+            <a href="index.php?action=index" class="liens">Accueil</a>
+            <a href="index.php?action=info" class="liens">Infos</a>
+            <a href="index.php?action=sortie" class="liens">Sorties</a>
+            <a href="index.php?action=contact" class="liens">Contact</a>
+            <a href="index.php?action=monCompte" class="liens">Mon Compte</a>
+            <a href="index.php?action=deconnexion" class="liens">Déconnexion</a>
+            <div class="animation start-home"></div>
+        </nav>
+        <?php }else{ ?>
+        <nav class="menu">
+            <a href="index.php?action=index" class="liens">Accueil</a>
+            <a href="index.php?action=ecole" class="liens">Notre école</a>
+            <a href="index.php?action=login" class="liens">Connexion/Inscription</a>
+            <div class="animation start-home"></div>
+        </nav>
+        <?php } ?>
+    </header>

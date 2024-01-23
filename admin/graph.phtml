@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Graphique d'absences</title>
+	<!-- Inclusion de Chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<!-- Inclusion de jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- Inclusion du fichier PHP avec les données -->
+	<?php include 'donnees_graphique.php'; ?>
+</head>
+<body>
+	<!-- Création du canvas pour le graphique -->
+	<canvas id="graphique" width="800" height="400"></canvas>
+
+	<script>
+		// Récupération du canvas et création du graphique
+		var ctx = document.getElementById('graphique').getContext('2d');
+		var myChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: <?php echo json_encode(array_column($data, 'nom_enseignant')); ?>,
+		        datasets: [{
+		            label: 'Nombre de jours d\'absence',
+		            data: <?php echo json_encode(array_column($data, 'nb_jours_absence')); ?>,
+		            backgroundColor: <?php echo json_encode(array_column($data, 'color')); ?>
+		        }]
+		    },
+		    options: {
+		    	responsive: true,
+		    	maintainAspectRatio: false,
+		    	scales: {
+		    		yAxes: [{
+		    			ticks: {
+		    				beginAtZero: true
+		    			}
+		    		}]
+		    	}
+		    }
+		});
+	</script>
+</body>
+</html>

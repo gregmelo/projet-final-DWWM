@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon école</title>
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="img/favicon/icons8-school-smashingstocks-flat-96.png">
+    <!--google webfont-->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <!--lien pour les styles-->
+    <!-- <link rel="stylesheet" href="./css/normalize.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script src="www/js/formulaire.js" defer></script>
+    <script src="https://kit.fontawesome.com/2aa3c7d5e5.js" crossorigin="anonymous"></script>
+    <script src="../www/js/menu-burger.js" defer></script>
+
+
+
+</head>
+
+<body>
+    <header class="container ">
+        <div class="row menus">
+            <?php if (isset($_SESSION['login_nom'])) { ?>
+                <ul class="menuconnecter col-lg-12 d-none d-xl-block">
+                    <a href="index.php?action=accueil" class="liens">Accueil</a>
+                    <a href="index.php?action=actualite" class="liens">Actualité</a>
+                    <a href="index.php?action=galerie" class="liens">Galerie</a>
+                    <a href="index.php?action=contact" class="liens">Contact</a>
+                    <a href="index.php?action=monCompte" class="liens">Mon Compte</a>
+                    <a href="index.php?action=deconnexion" class="liens">Déconnexion</a>
+                    <div class="animationconnecter start-homeconnecter"></div>
+                </ul>
+            <?php } else { ?>
+                <ul class="menu d-none d-lg-block">
+                    <a href="index.php?action=accueil" class="liens col-lg-4 text-center">Accueil</a>
+                    <a href="index.php?action=ecole" class="liens col-lg-4 text-center">Notre école</a>
+                    <a href="index.php?action=connexion" class="liens col-lg-4 text-center">Connexion</a>
+                    <div class="animation start-home"></div>
+                </ul>
+            <?php } ?>
+        </div>
+<div class="menu-burger">
+    <i class="fa-solid fa-burger -mr-3" id="openBtn" onclick="handleMenu(true)"></i>
+    <i class="fa-solid fa-xmark inactive" id="closeBtn" onclick="handleMenu(false)"></i>
+</div>
+<div class="d-block d-lg-none nav-menu-burger inactive" id="navMenuBurger">
+            <nav class="collapse navbar-collapse" id="navbar-content">
+                <div class="bg-light shadow-3 p-4">
+                    <?php if (isset($_SESSION['login_nom'])) { ?>
+                        <nav class="menuconnecter ">
+                            <p><a href="index.php?action=index" class="liens">Accueil</a></p>
+                            <p><a href="index.php?action=actualite" class="liens">Actualité</a></p>
+                            <p><a href="index.php?action=galerie" class="liens">Galerie</a></p>
+                            <p><a href="index.php?action=contact" class="liens">Contact</a></p>
+                            <p><a href="index.php?action=monCompte" class="liens">Mon Compte</a></p>
+                            <p><a href="index.php?action=deconnexion" class="liens">Déconnexion</a></p>
+                            <div class="animationconnecter start-homeconnecter"></div>
+                        </nav>
+                    <?php } else { ?>
+                        <nav class="menu">
+                            <p><a href="index.php?action=accueil" class="liens col-lg-4 text-center">Accueil</a></p>
+                            <p><a href="index.php?action=ecole" class="liens col-lg-4 text-center">Notre école</a></p>
+                            <p><a href="index.php?action=connexion" class="liens col-lg-4 text-center">Connexion</a></p>
+                            <div class="animation start-home"></div>
+                        </nav>
+                    <?php } ?>
+                </div>
+            </nav>
+        </div>
+    </header>
