@@ -12,13 +12,10 @@ function valider() {
   let Nom = $("#nom").val().trim();
   let Password = $("#password").val().trim();
   let message = "OK";
-  let xhr = $.get(
-    "http://localhost/projet_perso_titre/admin/index.php",
-    {
-      nom: Nom,
-      password: Password,
-    }
-  ); /// $.get
+  let xhr = $.get("http://localhost/projet_perso_titre/admin/index.php", {
+    nom: Nom,
+    password: Password,
+  }); /// $.get
 
   xhr.done(function (data) {
     if (data === "1") {
@@ -33,7 +30,6 @@ function valider() {
     }
   });
 } /// voir
-
 
 function afficherMasquer() {
   // récupération d'état de la case a cocher pour rendre le mdp visible ou invisible
@@ -61,7 +57,9 @@ function seSouvenir(Nom, password) {
     if ($("#rememberMe").prop("checked")) {
       creerCookie("nom", Nom);
       creerCookie("password", password);
-      $("#lbpRememberMe").html("Des cookies seront créer dans votre navigateur");
+      $("#lbpRememberMe").html(
+        "Des cookies seront créer dans votre navigateur"
+      );
       message = 1;
     } else {
       message = 0;
@@ -86,8 +84,26 @@ function creerCookie(nom, valeur, jours) {
   $.cookie(nom, valeur, { expires: jours });
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll(".form-group input");
+
+  inputs.forEach((input) => {
+    input.addEventListener("focus", function () {
+      const label = this.nextElementSibling;
+      label.classList.add("active");
+    });
+
+    input.addEventListener("blur", function () {
+      const label = this.nextElementSibling;
+      if (this.value === "") {
+        label.classList.remove("active");
+      }
+    });
+  });
+});
+
 /*
 main
 */
 
-$(document).ready(init())
+$(document).ready(init());

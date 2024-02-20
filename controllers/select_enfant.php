@@ -25,4 +25,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Inclure le fichier de vue (select_enfant.phtml)
 $template2 = "www/select_enfant";
-?>
+

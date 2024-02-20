@@ -5,11 +5,11 @@
   display: none;
 }
 #datetime-input label {
-    width: auto;
+  width: auto;
 }
 
 #datetime-input .col-sm-4 {
-    flex: 1;
+  flex: 1;
 }
 
 .fc th {
@@ -25,4 +25,67 @@
 .fc-day-number {
   display: block;
   margin-top: 5px;
+}
+
+.form-container {
+  position: absolute;
+  width: 400px;
+}
+
+.form-container form {
+  width: 100%;
+  padding: 40px;
+}
+
+.form-container h1 {
+  color: var(--lg);
+  font-style: 32px;
+  font-weight: 900;
+  text-align: center;
+  margin-block-end: 32px;
+}
+
+.form-container .form-group {
+  position: relative;
+  margin-block-end: 32px;
+}
+
+.form-group input {
+  padding: 8px 16px;
+  width: 100%;
+  height: 48px;
+  background-color: transparent;
+  border: 2px solid var(--fc);
+  border-radius: 50px;
+  color: var(--lg);
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group input:valid {
+  border-color: var(--lg);
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  padding: 0 8px;
+  font-weight: 700;
+  color: var(--fc);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.3s ease-in-out;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+  top: 1px;
+  color: var(--lg);
+  padding: 2px 8px;
+  background: var(--bg);
 }

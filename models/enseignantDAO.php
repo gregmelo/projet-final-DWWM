@@ -37,7 +37,6 @@ class EnseignantsDAO
             $nameTeacher = $query->fetchColumn();
             return $nameTeacher;
         } catch (PDOException $e) {
-            // Gérer l'erreur ici, par exemple, en journalisant l'erreur ou en renvoyant une valeur par défaut.
             return "Erreur de base de données : " . $e->getMessage();
         }
     }

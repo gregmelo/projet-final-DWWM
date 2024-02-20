@@ -20,7 +20,7 @@
                        <div class="card-box">
                            <?php if ($ajout_ok == 1) { ?>
                                <div class="alert alert-success" role="alert">
-                                <?php echo 'M. ou Mme <span class="font-weight-bold">' . $_POST['nom'] . ' ' . $_POST['prenom'] . '</span> a bien été ajouté(e) avec l\'adresse email <span class="font-weight-bold">' . $_POST['email'] . '</span> et le mot de passe <span class="font-weight-bold">' . $_POST['password'] . '</span><br> Veuillez noter ces informations et les transmettre au parent concerné afin qu\'il puisse modifier son mot de passe provisoire.'; ?>
+                                   <?php echo 'M. ou Mme <span class="font-weight-bold">' . $_POST['nom'] . ' ' . $_POST['prenom'] . '</span> a bien été ajouté(e) avec l\'adresse email <span class="font-weight-bold">' . $_POST['email'] . '</span> et son mot de passe de connection lui à été envoyer par email.'; ?>
 
 
                                </div>
@@ -32,7 +32,7 @@
                                <div class="alert alert-danger" role="alert">
                                    <?php echo 'Le mot de passe doit contenir au moins 8 caractères avec au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial (@$!%*#?&)' ?>
                                </div>
-                           <?php }else if ($ajout_ok == 4) { ?>
+                           <?php } else if ($ajout_ok == 4) { ?>
                                <div class="alert alert-danger" role="alert">
                                    <?php echo "L'email n'a pas le bon format" ?>
                                </div>
@@ -56,7 +56,7 @@
                                        <input type="text" class="form-control" id="email" name="email" required>
                                    </div>
                                </div>
-                               <div class="form-group row">
+                               <!-- <div class="form-group row">
                                    <label class="col-sm-2 col-form-label" for="passwordParent">Mot de passe<span class="text-danger">*</span></label>
                                    <div class="col-sm-10">
                                        <input type="password" class="form-control" id="passwordParent" name="password" required>
@@ -66,7 +66,7 @@
                                        <input type="checkbox" id="chkPasswordParent">
                                        <label for="insShowPassword" id="lblPasswordParent">Afficher le mot de passe</label><br><br>
                                    </div>
-                               </div>
+                               </div> -->
                                <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
                            </form>
                        </div>
@@ -90,7 +90,7 @@
        <div class="container-fluid">
            <div class="row">
                <div class="col-md-12 text-center">
-                   2023 &copy; thème Greeva, créé par Coderthemes, modifié par Véricel Grégory. 
+                   2023 &copy; thème Greeva, créé par Coderthemes, modifié par Véricel Grégory.
                </div>
            </div>
        </div>

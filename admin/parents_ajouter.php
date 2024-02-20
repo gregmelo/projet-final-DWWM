@@ -3,37 +3,48 @@ require('../models/DatabaseAdmin.php');
 require('../models/parent.php');
 require('../models/parentDAO.php');
 
-
 $parentDAO = new ParentDAO();
-
 $ajout_ok = 0;
 
 if (isset($_POST['ajouter'])) {
-
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $email = htmlspecialchars($_POST['email']);
-    $mdp = $_POST['password'];
-    $regexMail = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
-    $regexMDP = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
-    $emailExiste = $parentDAO->VerifName($email);
-    $passwordChanged = 'false';
+    $passwordChanged = false;
+    // Générer un mot de passe aléatoire
+    $password = generateRandomPassword();
+    
+    // Hacher le mot de passe
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+    // Envoyer l'e-mail au parent
+    $to = $email;
+    $subject = "Votre nouveau mot de passe";
+    $message = "Bonjour,\n\nVoici votre nouveau mot de passe pour accéder à votre compte : $password\n\nCordialement,\nVotre école";
+    $headers = "From: votreecole@exemple.com";
 
-    if (!preg_match($regexMDP, $mdp)) {
-        $ajout_ok = 3; // mot de passe ne respecte pas les critères
-    } else if (!preg_match($regexMail, $email)) {
-        $ajout_ok = 4; // mail ne respecte pas les critères
-    } else if($emailExiste['count(email)'] >= 1) {
-
-        $ajout_ok = 2;
-    } else {
-        $mdp_hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $parent = new Parents(0, $nom, $prenom, $email, $mdp_hash, $passwordChanged);
+    if (mail($to, $subject, $message, $headers)) {
+        // Insérer le parent dans la base de données avec le mot de passe haché
+        $parent = new Parents(0, $nom, $prenom, $email, $hashedPassword, $passwordChanged);
         $parentDAO->AddParent($parent);
-
         $ajout_ok = 1;
+    } else {
+        $ajout_ok = 5; // Erreur lors de l'envoi de l'e-mail
     }
 }
+
+$template = "parents_ajouter";
+include "layout.phtml";
+
+function generateRandomPassword($length = 12) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-/*!§$%&#';
+    $password = '';
+    for ($i = 0; $i < $length; $i++) {
+        $password .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $password;
+}
+
 
 $template = "parents_ajouter";
 include "layout.phtml";

@@ -1,14 +1,10 @@
-<div class="container">
+<div class="form-login mb-3">
     <?php if (empty($eleve_liste_by_parent)) { ?>
         <p>Nous n'avons pas pu trouver votre ou vos enfants. Merci de contacter un enseignant ou le directeur.</p>
     <?php } else { ?>
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <form id="select_enfant_form" method="post" class="form-login mb-3">
-                    <div class="form-group row align-items-center">
-                        <label for="select_enfant" class="col-md-6 col-form-label text-md-right">Sélectionner un enfant :</label>
-                        <div class="col-md-6">
-                            <select id="select_enfant" name="select_enfant" class="form-control">
+        <div class="form-login mb-3">
+                    <label for="id_enseignant">Choississez votre enfant concerné par le message</label>
+                    <select id="select_enfant" name="select_enfant" class="form-control">
                                 <?php
                                 $selected_child_id = isset($selected_child_info['id']) ? $selected_child_info['id'] : null;
                                 foreach ($eleve_liste_by_parent as $eleve) {
@@ -19,11 +15,7 @@
                                     </option>
                                 <?php } ?>
                             </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+                </div>
     <?php } ?>
 </div>
 
