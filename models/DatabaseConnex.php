@@ -9,7 +9,7 @@ class Database {
     public static function connect(){
 
         try{
-        self::$bdd = new PDO('mysql:host=mysql-vericelgregory.alwaysdata.net;dbname=vericelgregory_gestionecole;charset=utf8',"286914","Form2023");
+        self::$bdd = new PDO('mysql:host=********;dbname=********;charset=utf8',"286914","********");
         }
         catch(Exception $erreur){
             die("ERROR connexion à la base de donnée:" .$erreur->getMessage());
