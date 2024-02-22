@@ -20,7 +20,7 @@ if (isset($_POST['ajouter'])) {
     // Envoyer l'e-mail au parent
     $to = $email;
     $subject = "Votre nouveau mot de passe";
-    $message = "Bonjour,\n\nVoici votre nouveau mot de passe pour accéder à votre compte : $password\n\nCordialement,\nVotre école";
+    $message = "Bonjour,\n\nUn compte vous à été créer sur le site de l'école de votre/vos enfant(s). \n\nVoici votre mot de passe pour accéder à votre compte : $password\n\nCordialement,\nVotre école";
     $headers = "From: votreecole@exemple.com";
 
     if (mail($to, $subject, $message, $headers)) {

@@ -3,16 +3,14 @@ session_start();
 
 class Database
 {
-
-    // proprietes
+    // propriétés
     public static $bdd;
 
-    //
+    // méthode de connexion à la base de données
     public static function connect()
     {
-        //foo@ssh:~$ mysql -h mysql-foo.alwaysdata.net -u foo -p foo_base
         try {
-            self::$bdd = new PDO('mysql:host=mysql-vericelgregory.alwaysdata.net;dbname=vericelgregory_gestionecole;charset=utf8',"286914", "Form2023");
+            self::$bdd = new PDO('mysql:host=mysql-vericelgregory.alwaysdata.net;dbname=vericelgregory_gestionecole;charset=utf8', "286914", "Form2023");
         } catch (Exception $erreur) {
             die("ERROR connexion à la base de donnée:" . $erreur->getMessage());
         }

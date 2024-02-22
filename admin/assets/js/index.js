@@ -55,29 +55,23 @@ function seSouvenir(Nom, password) {
   let message = "";
   if (navigator.cookieEnabled) {
     if ($("#rememberMe").prop("checked")) {
-      creerCookie("nom", Nom);
-      creerCookie("password", password);
+      creerCookie("nom", Nom, 7); // ajout du paramètre pour la durée de vie du cookie
+      creerCookie("password", password, 7); // ajout du paramètre pour la durée de vie du cookie
       $("#lbpRememberMe").html(
-        "Des cookies seront créer dans votre navigateur"
+        "Des cookies seront créés dans votre navigateur"
       );
-      message = 1;
+      message = "Se souvenir activé";
     } else {
-      message = 0;
+      message = "Se souvenir désactivé";
       supprimerCookie("nom");
       supprimerCookie("password");
     }
   } else {
-    message = -1;
+    message = "Cookies désactivés";
   }
   console.log(message);
+  return message; // retourne le message
 }
-
-// function creerCookie() {
-// let pseudo = $("#pseudo").val().trim()
-// let mdp = $("#mdp").val().trim()
-//   $.cookie(cookPseudo, pseudo, { expires: 7 })
-//   $.cookie(cookMdp, mdp, { expires: 7})
-// }
 
 function creerCookie(nom, valeur, jours) {
   //
@@ -106,4 +100,4 @@ document.addEventListener("DOMContentLoaded", function () {
 main
 */
 
-$(document).ready(init());
+$(document).ready(init);

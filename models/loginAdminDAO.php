@@ -38,4 +38,11 @@ class AdminDAO
         $query = Database::connect()->prepare("INSERT INTO `admin` (email,motDePasse) VALUES (?,?)");
         $query->execute([$email, $password_h]);
     }
+
+    public function updatePassword($email, $hashedPassword)
+    {
+        $query = Database::connect()->prepare("UPDATE `admin` SET motDePasse = ? WHERE email = ?");
+        $query->execute([$hashedPassword, $email]);
+    }
+    
 }
